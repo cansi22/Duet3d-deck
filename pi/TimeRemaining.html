@@ -1,0 +1,50 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>com.greghesp.octodeck.timeremaining</title>
+    <link rel="stylesheet" href="sdpi.css">
+    <script src="timeremaining.js"></script>
+</head>
+
+<body>
+<div class="sdpi-wrapper hidden">
+    <div class="sdpi-item">
+        <div class="sdpi-item-label">API Key</div>
+        <input class="sdpi-item-value" id="apikey" value="" onchange="updateGlobalData()" placeholder="Enter your OctoPrint API Key">
+    </div>
+    <div class="sdpi-item">
+        <div class="sdpi-item-label">Address</div>
+        <input class="sdpi-item-value" id="address" value="" onchange="updateGlobalData()" placeholder="Enter the OctoPrint address (http://192.168.1.123)">
+    </div>
+    <div class="sdpi-item">
+        <div class="sdpi-item-label">Poll Interval</div>
+        <div class="sdpi-item">
+            <select class="sdpi-item-value select" id="poll-interval" onchange="updateGlobalData()">
+                <option value="10">10 seconds</option>
+                <option value="30">30 seconds</option>
+                <option value="60">1 minute</option>
+                <option value="300">5 minutes</option>
+                <option value="1800">30 minutes</option>
+
+            </select>
+        </div>
+    </div>
+
+    <div class="sdpi-item">
+        <div type="checkbox" class="sdpi-item" onchange="updateGlobalData()">
+            <div class="sdpi-item-label">Webcam</div>
+            <input class="sdpi-item-value" id="webcam" type="checkbox" value="left">
+            <label for="webcam"><span></span>Enable</label>
+        </div>
+    </div>
+
+    <div class="sdpi-item">
+        <div class="sdpi-item-label">OctoPrint</div>
+        <button class="sdpi-item-value" id="testConnection" type="button" onclick="testConnection();">Test Connection</button>
+        <button class="sdpi-item-value" type="button" onclick="openPage();">Open OctoPrint</button>
+    </div>
+</div>
+</body>
+
+</html>
