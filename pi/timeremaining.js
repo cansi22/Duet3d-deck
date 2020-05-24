@@ -1,7 +1,7 @@
 let websocket = null,
     uuid = null,
     actionInfo = {},
-    apikey = null,
+
     address = null,
     interval;
 
@@ -39,16 +39,16 @@ function connectElgatoStreamDeckSocket(inPort, inPropertyInspectorUUID, inRegist
             const payload = jsonObj.payload.settings;
             const e = document.getElementById('poll-interval');
 
-            apikey = payload.apikey;
+
             address = payload.address;
             interval = payload.interval;
 
-            document.getElementById('apikey').value = payload.apikey;
+
             document.getElementById('address').value = payload.address;
             document.getElementById('poll-interval').value = payload.interval;
 
 
-            if(document.getElementById('apikey').value === "undefined") document.getElementById('apikey').value = "";
+
             if(document.getElementById('address').value === "undefined") document.getElementById('address').value = "";
             if(e.value === "undefined") document.getElementById('poll-interval').value = "60";
 
@@ -62,10 +62,10 @@ function updateGlobalData() {
     if (websocket && (websocket.readyState === 1)) {
         let payload = {};
         const e = document.getElementById('poll-interval');
-        payload.apikey = document.getElementById('apikey').value;
+
         payload.address = document.getElementById('address').value;
         payload.interval = e.options[e.selectedIndex].value;
-        payload.webcam = document.getElementById('webcam').value;
+
         console.log(payload)
 
         const json = {
@@ -78,11 +78,11 @@ function updateGlobalData() {
 }
 
 function testConnection() {
-    const apikey = document.getElementById('apikey').value;
+    
     const address = document.getElementById('address').value;
-    fetch(`${address}/api/version`, {
-        headers: { 'X-Api-Key': apikey}
-    })
+    fetch(`${address}/api/version`)
+
+
         .then(response => {
             let json = {};
             if(response.status !== 200) {

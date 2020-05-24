@@ -13,18 +13,18 @@
       "PropertyInspectorPath": "pi/TimeRemaining.html",
       "SupportedInMultiActions": false,
       "Tooltip": "If Stream Deck button pressed, then...",
-      "UUID": "com.greghesp.octodeck.timeremaining"
+      "UUID": "com.cansi22.duet3d.timeremaining"
     }
   ],
   "SDKVersion": 2,
-  "Author": "greghesp",
+  "Author": "cansi22",
   "CodePath": "plugin/main.html",
-  "Description": "Easily integrate the Elgato Stream Deck with your OctoPrint setup",
-  "Name": "OctoDeck",
+  "Description": "Easily integrate the Elgato Stream Deck with your Duet3D setup",
+  "Name": "Duet3D",
   "Icon": "resources/actionIcon",
-  "Category": "OctoDeck",
+  "Category": "Duet3D",
   "CategoryIcon": "resources/actionIcon",
-  "URL": "https://moeritz.cc",
+  "URL": "https://github.com/cansi22/Duet3d-deck",
   "Version": "1.0",
   "OS": [
     {

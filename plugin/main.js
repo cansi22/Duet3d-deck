@@ -1,6 +1,6 @@
 let websocket = null,
     uuid = null,
-    apikey = null,
+    
     address = null,
     interval = 60000;
 
@@ -50,9 +50,8 @@ function connectElgatoStreamDeckSocket(inPort, inPropertyInspectorUUID, inRegist
 async function updateTitle(context) {
     setInterval(async() => {
         if(!address) return;
-        const response = await callOctoPrint('/api/job').then(r => r.json());
-        const image = await getPhoto();
-        const timeLeft = new Date(response.progress.printTimeLeft * 1000).toISOString().substr(11, 8);
+        const response = await callDuet3D('/rr_status?type=3').then(r => r.json());
+        const timeLeft = new Date(response.timesLeft.filament * 1000).toISOString().substr(11, 8);
 
         let payload = {};
         payload.title = timeLeft.toString();
@@ -62,40 +61,12 @@ async function updateTitle(context) {
             "context": context,
             "payload": payload
         };
-
-        websocket.send(JSON.stringify(json));
-
-        json = {
-            "event": "setImage",
-            "context": context,
-            "payload": {
-                "image": image,
-                "target":0
-            }
-        };
-
         websocket.send(JSON.stringify(json));
     }, interval);
 }
 
 
 
-function callOctoPrint(url) {
-    return fetch(`${address}${url}`, {
-        headers: { 'X-Api-Key': apikey}
-    })
-}
-
-function getPhoto(){
-    return fetch(`${address}:8080/?action=snapshot`)
-        .then( response => response.blob() )
-        .then( blob =>{
-            var reader = new FileReader() ;
-            return new Promise((res) => {
-                reader.onload = function(){
-                    return res(this.result)
-                };
-                reader.readAsDataURL(blob) ;
-            });
-        }) ;
+function callDuet3D(url) {
+    return fetch(`${address}${url}`)
 }
